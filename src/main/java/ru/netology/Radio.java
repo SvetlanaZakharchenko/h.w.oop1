@@ -22,7 +22,6 @@ public class Radio {
         this.numberStations = numberStations;
     }
 
-
     public int getNumberStations() {return numberStations;}
 
     public void setCurrentStation(int currentStation) {
@@ -50,7 +49,6 @@ public class Radio {
             this.currentStation = currentStation - 1;
         }
     }
-
 
     public int getCurrentVolume() {
         return currentVolume;

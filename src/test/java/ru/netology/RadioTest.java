@@ -5,13 +5,11 @@ import org.junit.jupiter.api.Test;
 
 class RadioTest {
 
-
     @Test
     public void shouldUseConstructionDefault() {
         Radio radio1 = new Radio();
         Assertions.assertEquals(10,radio1.getNumberStations());
     }
-
 
     @Test
     public void shouldUseCreateConstruction() {
@@ -20,119 +18,134 @@ class RadioTest {
     }
 
     @Test
+    public void shouldSetNumberStations() {
+        Radio radio = new Radio();
+        radio.setNumberStations(7);
+
+        Assertions.assertEquals(7,radio.getNumberStations());
+    }
+
+    @Test
     public void saveTheCurrentStation() {
         Radio radio = new Radio(2, 1,10);
+        Assertions.assertEquals(2, radio.getCurrentStation());
+    }
 
-        int expected = 2;
-        int actual = radio.getCurrentStation();
+    @Test
+    public void boundaryValues() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(11);
 
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
+    public void PositiveBoundaryConditionsForStations() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(8);
+
+        Assertions.assertEquals(8, radio.getCurrentStation());
+    }
+
+    @Test
+    public void borderConditions() {
+        Radio radio = new Radio();
+        radio.setCurrentStation(-1);
+
+        Assertions.assertEquals(0, radio.getCurrentStation());
     }
 
     @Test
     public void switchToNextStation() {
         Radio radio = new Radio(6,1,10);
-
         radio.switchToNextStation();
 
-        int expected = 7;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(7, radio.getCurrentStation());
     }
 
     @Test
     public void switchToZeroStation() {
         Radio radio = new Radio(9,1,10);
-
         radio.switchToNextStation();
 
-        int expected = 0;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(0, radio.getCurrentStation());
     }
 
     @Test
     public void switchToPreviousStation() {
         Radio radio = new Radio(9,1,10);
-
         radio.switchToPreviousStation();
 
-        int expected = 8;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(8, radio.getCurrentStation());
     }
 
     @Test
     public void switchToNinthStation() {
         Radio radio = new Radio(0,1,10);
-
         radio.switchToPreviousStation();
 
-        int expected = 9;
-        int actual = radio.getCurrentStation();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(9, radio.getCurrentStation());
     }
 
     @Test
     public void saveTheCurrentVolume() {
         Radio radio = new Radio(1,2,10);
-
-        int expected = 2;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(2, radio.getCurrentVolume());
     }
 
+    @Test
+    public void boundaryValuesForVolume() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(101);
+
+        Assertions.assertEquals(0, radio.getCurrentVolume());
+    }
+
+    @Test
+    public void borderConditionsForVolume() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(-1);
+
+        Assertions.assertEquals(0, radio.getCurrentVolume());
+    }
+
+    @Test
+    public void PositiveBoundaryConditionsForVolume() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(70);
+
+        Assertions.assertEquals(70, radio.getCurrentVolume());
+    }
 
     @Test
     public void increaseVolume() {
         Radio radio = new Radio(1,7,10);
-
         radio.increaseVolume();
 
-        int expected = 8;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(8, radio.getCurrentVolume());
     }
 
     @Test
     public void stopIncreaseVolume() {
         Radio radio = new Radio(1,100,10);
-
         radio.increaseVolume();
 
-        int expected = 100;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(100, radio.getCurrentVolume());
     }
 
     @Test
     public void decreaseVolume() {
         Radio radio = new Radio(1,7,10);
-
         radio.decreaseVolume();
 
-        int expected = 6;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(6, radio.getCurrentVolume());
     }
 
     @Test
     public void stopDecreaseVolume() {
         Radio radio = new Radio(1,0,10);
-
         radio.decreaseVolume();
 
-        int expected = 0;
-        int actual = radio.getCurrentVolume();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(0, radio.getCurrentVolume());
     }
 }
