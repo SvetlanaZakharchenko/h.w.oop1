@@ -5,6 +5,13 @@ import org.junit.jupiter.api.Test;
 
 class RadioTest {
 
+
+    @Test
+    public void shouldFindMaxStation() {
+        Radio radio = new Radio(10);
+        Assertions.assertEquals(9,radio.getMaxStation());
+
+    }
     @Test
     public void shouldUseConstructionDefault() {
         Radio radio1 = new Radio();
@@ -13,7 +20,7 @@ class RadioTest {
 
     @Test
     public void shouldUseCreateConstruction() {
-        Radio radio = new Radio(1, 1, 10);
+        Radio radio = new Radio(10);
         Assertions.assertEquals(10, radio.getNumberStations());
     }
 
@@ -27,7 +34,8 @@ class RadioTest {
 
     @Test
     public void saveTheCurrentStation() {
-        Radio radio = new Radio(2, 1,10);
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(2);
         Assertions.assertEquals(2, radio.getCurrentStation());
     }
 
@@ -57,7 +65,8 @@ class RadioTest {
 
     @Test
     public void switchToNextStation() {
-        Radio radio = new Radio(6,1,10);
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(6);
         radio.switchToNextStation();
 
         Assertions.assertEquals(7, radio.getCurrentStation());
@@ -65,7 +74,8 @@ class RadioTest {
 
     @Test
     public void switchToZeroStation() {
-        Radio radio = new Radio(9,1,10);
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(9);
         radio.switchToNextStation();
 
         Assertions.assertEquals(0, radio.getCurrentStation());
@@ -73,7 +83,8 @@ class RadioTest {
 
     @Test
     public void switchToPreviousStation() {
-        Radio radio = new Radio(9,1,10);
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(9);
         radio.switchToPreviousStation();
 
         Assertions.assertEquals(8, radio.getCurrentStation());
@@ -81,7 +92,8 @@ class RadioTest {
 
     @Test
     public void switchToNinthStation() {
-        Radio radio = new Radio(0,1,10);
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(0);
         radio.switchToPreviousStation();
 
         Assertions.assertEquals(9, radio.getCurrentStation());
@@ -89,7 +101,8 @@ class RadioTest {
 
     @Test
     public void saveTheCurrentVolume() {
-        Radio radio = new Radio(1,2,10);
+        Radio radio = new Radio(10);
+        radio.setCurrentVolume(2);
         Assertions.assertEquals(2, radio.getCurrentVolume());
     }
 
@@ -119,7 +132,8 @@ class RadioTest {
 
     @Test
     public void increaseVolume() {
-        Radio radio = new Radio(1,7,10);
+        Radio radio = new Radio(10);
+        radio.setCurrentVolume(7);
         radio.increaseVolume();
 
         Assertions.assertEquals(8, radio.getCurrentVolume());
@@ -127,7 +141,8 @@ class RadioTest {
 
     @Test
     public void stopIncreaseVolume() {
-        Radio radio = new Radio(1,100,10);
+        Radio radio = new Radio(10);
+        radio.setCurrentVolume(100);
         radio.increaseVolume();
 
         Assertions.assertEquals(100, radio.getCurrentVolume());
@@ -135,7 +150,8 @@ class RadioTest {
 
     @Test
     public void decreaseVolume() {
-        Radio radio = new Radio(1,7,10);
+        Radio radio = new Radio(10);
+        radio.setCurrentVolume(7);
         radio.decreaseVolume();
 
         Assertions.assertEquals(6, radio.getCurrentVolume());
@@ -143,7 +159,8 @@ class RadioTest {
 
     @Test
     public void stopDecreaseVolume() {
-        Radio radio = new Radio(1,0,10);
+        Radio radio = new Radio(10);
+        radio.setCurrentVolume(0);
         radio.decreaseVolume();
 
         Assertions.assertEquals(0, radio.getCurrentVolume());
